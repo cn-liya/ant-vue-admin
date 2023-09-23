@@ -1,5 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ResultProps } from 'ant-design-vue'
+
+defineProps<{
+  status: ResultProps['status']
+  title: ResultProps['title']
+  subTitle: ResultProps['subTitle']
+}>()
+</script>
 
 <template>
-  <h2>error.page</h2>
+  <a-result :status="status" :title="title" :sub-title="subTitle">
+    <template #extra>
+      <a-button type="primary" @click="$router.push('/')">Back Home</a-button>
+    </template>
+  </a-result>
 </template>

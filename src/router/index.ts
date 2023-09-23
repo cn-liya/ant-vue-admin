@@ -1,3 +1,4 @@
+import { errorMap } from '@/types/errors'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -24,7 +25,8 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
-      component: () => import('@/components/ErrorPage.vue')
+      component: () => import('@/components/ErrorPage.vue'),
+      props: errorMap['404']
     }
   ]
 })
