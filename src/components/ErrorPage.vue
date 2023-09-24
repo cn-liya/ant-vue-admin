@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <a-result :status="status" :title="title" :sub-title="subTitle">
     <template #extra>
-      <a-button type="primary" @click="$router.push('/')">Back Home</a-button>
+      <a-button type="primary" @click="$router.push('/')">Back</a-button>
     </template>
   </a-result>
 </template>

@@ -1,5 +1,6 @@
 import { errorMap } from '@/types/errors'
 import { createRouter, createWebHistory } from 'vue-router'
+import { routes } from './menu'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +20,8 @@ const router = createRouter({
           alias: '/',
           name: 'home',
           component: () => import('@/views/index/HomeWelcome.vue')
-        }
+        },
+        ...routes
       ]
     },
     {
