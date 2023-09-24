@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import api from '@/api'
+import { useCoreStore } from '@/stores/core'
 import { LockOutlined, SafetyOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const formState = reactive({
   username: '',
@@ -13,13 +16,33 @@ const disabled = ref(true)
 const base64_image = ref(
   'iVBORw0KGgoAAAANSUhEUgAAAAwAAAAFCAIAAAD+GJp4AAAAGUlEQVR4nGJ5//49AyHARFAF/RUBAgAA//8HKgLavlPODwAAAABJRU5ErkJggg=='
 )
+const router = useRouter()
+const store = useCoreStore()
 
 const submitForm = () => {
-  console.log('do submit')
+  api.login
+    .do(formState, loading)
+    .then((res) => {
+      store.setAuth({
+        token: res.token,
+        user: res.username,
+        super: res.is_super,
+        actions: res.actions,
+        menus: res.menus
+      })
+      router.push('/')
+    })
+    .catch(api.errorMsg)
 }
 
 const getCaptcha = () => {
-  console.log('getCaptcha')
+  api.captcha
+    .do({}, disabled)
+    .then((res) => {
+      formState.session_key = res.session_key
+      base64_image.value = res.base64_image
+    })
+    .catch(api.errorMsg)
 }
 
 {
