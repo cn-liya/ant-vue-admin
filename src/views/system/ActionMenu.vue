@@ -128,16 +128,14 @@ const submitForm = () => {
           <span>{{ row.key_name }}</span>
         </a-form-item>
         <a-form-item label="名称备注">
-          <a-input v-model:value="formState.title" maxlength="16" />
+          <a-input v-model:value="formState.title" :maxlength="16" />
         </a-form-item>
         <a-form-item label="排序">
           <a-input-number v-model:value="formState.sort" :min="0" :max="9999" :precision="0" />
         </a-form-item>
         <a-form-item :wrapper-col="{ offset: 5 }">
-          <a-space>
-            <a-button type="primary" @click="submitForm">确认</a-button>
-            <a-button @click="visible = false">取消</a-button>
-          </a-space>
+          <a-button type="primary" @click="submitForm">确认</a-button>
+          <a-button @click="visible = false">取消</a-button>
         </a-form-item>
       </a-form>
     </a-spin>

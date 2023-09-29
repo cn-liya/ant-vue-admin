@@ -2,10 +2,11 @@
 import api from '@/api'
 import { useCoreStore } from '@/stores/core'
 import { LockOutlined, SafetyOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { LoginArgs } from 'models'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const formState = reactive({
+const formState = reactive<LoginArgs>({
   username: '',
   password: '',
   captcha: '',
@@ -71,7 +72,11 @@ const getCaptcha = () => {
         name="password"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
-        <a-input-password v-model:value="formState.password" placeholder=" 密 码">
+        <a-input-password
+          v-model:value="formState.password"
+          autocomplete="new-password"
+          placeholder=" 密 码"
+        >
           <template #prefix><LockOutlined /></template>
         </a-input-password>
       </a-form-item>

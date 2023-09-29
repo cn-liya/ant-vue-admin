@@ -92,8 +92,8 @@ const setSelectMenu = (to: RouteLocationNormalizedLoaded) => {
         mode="inline"
         theme="dark"
         class="menu"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
+        v-model:open-keys="openKeys"
+        v-model:selected-keys="selectedKeys"
       >
         <RouteMenu :items="menuItems" />
       </a-menu>
