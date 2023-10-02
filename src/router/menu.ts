@@ -1,3 +1,5 @@
+import { errorMap } from '@/types/errors'
+import { MenuTree, dfsTree } from '@/types/route'
 import {
   DragOutlined,
   FormOutlined,
@@ -7,8 +9,6 @@ import {
   ToolOutlined,
   WarningOutlined
 } from '@ant-design/icons-vue'
-import { errorMap } from '@/types/errors'
-import { MenuTree, dfsTree } from '@/types/route'
 
 const menuTree: MenuTree = {
   system: {

@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
+import { ErrorResult, errorMap, ErrorCode } from '@/types/errors'
 import { MD5, RC4Drop } from 'crypto-js'
 import Utf8 from 'crypto-js/enc-utf8'
-import { errorMap, ErrorResult, ErrorCode } from '@/types/errors'
+import { defineStore } from 'pinia'
 import { RouteLocationNormalizedLoaded } from 'vue-router'
 
 type Auth = {

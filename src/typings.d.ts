@@ -6,3 +6,9 @@ declare module 'vue-router' {
     title: string[]
   }
 }
+
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $table: typeof table
+  }
+}

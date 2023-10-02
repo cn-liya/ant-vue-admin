@@ -6,9 +6,10 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import { useCoreStore } from './stores/core'
+import { table } from './types/table'
 
 const app = createApp(App)
-
+app.config.globalProperties.$table = table
 app.use(createPinia())
 app.use(router)
 

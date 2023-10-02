@@ -5,6 +5,32 @@
 .ant-btn + .ant-btn {
   margin-left: 12px;
 }
+.ant-btn.success:hover,
+.ant-btn.info:hover,
+.ant-btn.warning:hover,
+.ant-btn.error:hover {
+  opacity: 0.6;
+}
+.ant-btn.success {
+  background-color: #f6ffed;
+  border-color: #b7eb8f;
+}
+.ant-btn.info {
+  background-color: #e6f4ff;
+  border-color: #91caff;
+}
+.ant-btn.warning {
+  background-color: #fffbe6;
+  border-color: #ffe58f;
+}
+.ant-btn.error {
+  background-color: #fff2f0;
+  border-color: #ffccc7;
+}
+.ant-form-inline .ant-form-item {
+  margin-right: 32px;
+  margin-bottom: 18px;
+}
 .justify {
   width: 100%;
   justify-content: space-between;
