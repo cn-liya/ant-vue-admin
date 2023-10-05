@@ -49,9 +49,7 @@ const decrypt = () => {
             @click="encrypt"
             :disabled="plainText.trim().length < 2 || !api.cryptoEecrypt.permit()"
           >
-            <template #icon>
-              <DownOutlined />
-            </template>
+            <template #icon><DownOutlined /></template>
           </a-button>
           <a-button
             type="ghost"
@@ -60,9 +58,7 @@ const decrypt = () => {
             @click="decrypt"
             :disabled="cipherText.trim().length < 4 || !api.cryptoDecrypt.permit()"
           >
-            <template #icon>
-              <UpOutlined />
-            </template>
+            <template #icon><UpOutlined /></template>
           </a-button>
         </a-form-item>
         <a-form-item label="密文">

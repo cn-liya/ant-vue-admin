@@ -28,9 +28,17 @@
   background-color: #fff2f0;
   border-color: #ffccc7;
 }
+.tip {
+  line-height: 32px;
+  font-size: 12px;
+  opacity: 0.45;
+}
 .ant-form-inline .ant-form-item {
   margin-right: 32px;
   margin-bottom: 18px;
+}
+.ant-form-item-control {
+  line-height: 32px;
 }
 .justify {
   width: 100%;
@@ -38,4 +46,19 @@
 }
 .center {
   text-align: center;
+}
+.border-img {
+  max-width: 100%;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+.auto-width {
+  max-width: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.full-width .ant-input-group:not(:first-child) {
+  margin-top: 12px;
 }

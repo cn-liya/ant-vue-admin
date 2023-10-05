@@ -71,10 +71,7 @@ const submitForm = () => {
           :loading="disabled"
           style="margin-bottom: 16px"
         >
-          <template #icon>
-            <SyncOutlined />
-          </template>
-          全量同步
+          <template #icon><SyncOutlined /></template>全量同步
         </a-button>
         <a-tree
           v-if="menus.length > 0"
@@ -110,9 +107,7 @@ const submitForm = () => {
           <a-table-column key="action" title="操作">
             <template #default="{ record }">
               <a-button type="dashed" size="small" shape="circle" @click="edit(record)">
-                <template #icon>
-                  <EditOutlined />
-                </template>
+                <template #icon><EditOutlined /></template>
               </a-button>
             </template>
           </a-table-column>
