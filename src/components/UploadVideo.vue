@@ -90,7 +90,6 @@ const sourceLoad = () => {
       class="error"
       size="small"
       shape="circle"
-      danger
       @click="clear"
     >
       <template #icon><DeleteOutlined /></template>

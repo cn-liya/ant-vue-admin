@@ -67,9 +67,9 @@ const sourceLoad = () => {
 <template>
   <div class="upload-img-box">
     <a-spin :spinning="loading">
-      <div v-if="source && clearable" class="del" @click="clear">
+      <span v-if="source && clearable" class="del" @click="clear">
         <CloseCircleOutlined style="font-size: 18px" />
-      </div>
+      </span>
       <input
         type="file"
         ref="fileRef"
@@ -113,7 +113,7 @@ const sourceLoad = () => {
   top: -14px;
   right: -10px;
   opacity: 0.2;
-  z-index: 9;
+  transition: opacity 0.3s;
 }
 .upload-img-box .del:hover {
   opacity: 1;

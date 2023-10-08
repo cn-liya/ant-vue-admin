@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import api from '@/api'
-import { PlusOutlined } from '@ant-design/icons-vue'
+import { DeleteOutlined, PlusOutlined, ZoomInOutlined } from '@ant-design/icons-vue'
 import { UploadFile, UploadProps, message } from 'ant-design-vue'
 import { ref } from 'vue'
 
@@ -26,26 +26,34 @@ const changeFile = () => {
   emit('ok', paths)
 }
 
+const remove = (index: number) => {
+  fileList.value.splice(index, 1)
+  changeFile()
+}
+
+function setBase64(uid: string) {
+  fileList.value.forEach((item) => {
+    if (item.uid === uid) {
+      const reader = new FileReader()
+      reader.readAsDataURL(item.originFileObj!)
+      reader.onload = () => {
+        item.url = reader.result as string
+      }
+    }
+  })
+}
 const onChange: UploadProps['onChange'] = (info) => {
   if (!info.file.status || info.file.status === 'error') {
     fileList.value = fileList.value.filter((e) => e.status && e.status != 'error')
-  } else if (info.file.status == 'done' || info.file.status == 'removed') {
+  } else if (info.file.status === 'done') {
+    setBase64(info.file.uid)
+    changeFile()
+  } else if (info.file.status === 'removed') {
     changeFile()
   }
 }
 
-function getBase64(file: File) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = (error) => reject(error)
-  })
-}
-const onPreview: UploadProps['onPreview'] = async (file) => {
-  if (!file.url && file.originFileObj) {
-    file.url = (await getBase64(file.originFileObj)) as string
-  }
+const onPreview: UploadProps['onPreview'] = (file) => {
   previewSrc.value = file.url!
   visible.value = true
 }
@@ -106,22 +114,92 @@ const customRequest: UploadProps['customRequest'] = (option) => {
 </script>
 
 <template>
-  <a-upload
-    multiple
-    accept="image/jpeg,image/gif,image/png"
-    :before-upload="beforeUpload"
-    v-model:file-list="fileList"
-    list-type="picture-card"
-    :custom-request="customRequest"
-    :max-count="props.limit"
-    @preview="onPreview"
-    @change="onChange"
-  >
-    <span v-if="api.uplaodImage.permit() && (!limit || fileList.length < limit)">
-      <PlusOutlined />
-    </span>
-  </a-upload>
+  <drag-sort tag="div" v-model="fileList" item-key="uid" @end="changeFile">
+    <template #item="{ element, index }">
+      <div class="upload-list-item" :title="element.name">
+        <template v-if="element.url">
+          <img class="upload-list-item-thumbnail" :src="element.url" alt="" />
+          <span class="upload-list-item-box upload-list-item-actions">
+            <a-button type="ghost" size="small" @click="onPreview(element)">
+              <template #icon><ZoomInOutlined /></template>
+            </a-button>
+            <a-button type="ghost" size="small" @click="remove(index)">
+              <template #icon><DeleteOutlined /></template>
+            </a-button>
+          </span>
+        </template>
+        <template v-else>
+          <a-spin class="upload-list-item-box" />
+        </template>
+      </div>
+    </template>
+    <template #footer>
+      <a-upload
+        class="upload-wrapper"
+        v-show="api.uplaodImage.permit() && (!limit || fileList.length < limit)"
+        multiple
+        accept="image/jpeg,image/gif,image/png"
+        @change="onChange"
+        :before-upload="beforeUpload"
+        v-model:file-list="fileList"
+        list-type="picture-card"
+        :custom-request="customRequest"
+        :max-count="limit"
+        :show-upload-list="false"
+      >
+        <span><PlusOutlined /></span>
+      </a-upload>
+    </template>
+  </drag-sort>
   <a-modal v-model:open="visible" class="center" title="&nbsp" :footer="null">
     <img :src="previewSrc" alt="Preview Image" class="border-img" />
   </a-modal>
 </template>
+
+<style scoped>
+.upload-list-item {
+  position: relative;
+  overflow: hidden;
+  width: 102px;
+  height: 102px;
+  margin: 0 8px 8px 0;
+  display: inline-flex;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  vertical-align: top;
+}
+.upload-list-item-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.upload-list-item-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.upload-list-item-actions {
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.upload-list-item-actions:hover {
+  opacity: 1;
+}
+.upload-list-item-actions:active {
+  cursor: move;
+}
+.upload-list-item-actions .ant-btn {
+  color: #fff;
+  font-size: 16px;
+}
+.upload-wrapper {
+  width: auto;
+  display: inline-flex;
+}
+</style>

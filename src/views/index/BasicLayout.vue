@@ -171,10 +171,10 @@ const setSelectMenu = (to: RouteLocationNormalizedLoaded) => {
 .menu {
   height: calc(100vh - 110px);
   overflow: hidden;
+  scrollbar-width: thin;
 }
 .menu:hover {
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 .menu.ant-menu {
   border-inline-end: none;

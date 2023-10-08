@@ -62,3 +62,6 @@
 .full-width .ant-input-group:not(:first-child) {
   margin-top: 12px;
 }
+.drag {
+  cursor: move;
+}

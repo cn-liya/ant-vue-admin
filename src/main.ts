@@ -1,12 +1,14 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+
 import { useCoreStore } from './stores/core'
 import { table } from './types/table'
+import draggable from 'vuedraggable'
+
+import './assets/main.css'
 
 const app = createApp(App)
 app.config.globalProperties.$table = table
@@ -35,5 +37,7 @@ router.afterEach((to) => {
     store.setError('403')
   }
 })
+
+app.component('drag-sort', draggable)
 
 app.mount('#app')
