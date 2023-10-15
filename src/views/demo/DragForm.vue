@@ -87,9 +87,9 @@ const delItem = (index: number) => {
                 <template #icon><DeleteOutlined /></template>{{ typeMap.get(element.type) }}
               </a-button>
             </template>
-            <a-textarea v-if="element.type == 1" v-model:value="element.value" :rows="3" />
+            <a-textarea v-if="element.type === 1" v-model:value="element.value" :rows="3" />
             <UploadImage
-              v-else-if="element.type == 2"
+              v-else-if="element.type === 2"
               :src="element.value"
               @ok="(path) => (element.value = path)"
             />

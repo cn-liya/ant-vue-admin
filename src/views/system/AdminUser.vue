@@ -278,13 +278,8 @@ const submitAdd = () => {
   </a-spin>
 
   <a-drawer v-model:open="roleVisible" @close="resetRole" title="变更角色">
-    <a-spin :spinning="loading">
-      <a-form
-        ref="roleFormRef"
-        :model="roleFormState"
-        @finish="submitRole"
-        :label-col="{ span: 5 }"
-      >
+    <a-form ref="roleFormRef" :model="roleFormState" @finish="submitRole" :label-col="{ span: 5 }">
+      <a-spin :spinning="loading">
         <a-form-item label="用户名">
           <span> {{ user }}</span>
         </a-form-item>
@@ -309,13 +304,13 @@ const submitAdd = () => {
           <a-button type="primary" html-type="submit">确定</a-button>
           <a-button @click="closeRole">取消</a-button>
         </a-form-item>
-      </a-form>
-    </a-spin>
+      </a-spin>
+    </a-form>
   </a-drawer>
 
   <a-drawer v-model:open="pwdVisible" @close="resetPwd" title="重置密码">
-    <a-spin :spinning="loading">
-      <a-form ref="pwdFormRef" :model="pwdFormState" @finish="submitPwd" :label-col="{ span: 5 }">
+    <a-form ref="pwdFormRef" :model="pwdFormState" @finish="submitPwd" :label-col="{ span: 5 }">
+      <a-spin :spinning="loading">
         <a-form-item label="用户名">
           <span> {{ user }}</span>
         </a-form-item>
@@ -335,13 +330,13 @@ const submitAdd = () => {
           <a-button type="primary" html-type="submit">确定</a-button>
           <a-button @click="closePwd">取消</a-button>
         </a-form-item>
-      </a-form>
-    </a-spin>
+      </a-spin>
+    </a-form>
   </a-drawer>
 
   <a-drawer v-model:open="addVisible" @close="resetAdd" title="新增用户" :width="450">
-    <a-spin :spinning="loading">
-      <a-form ref="addFormRef" :model="addFormState" @finish="submitAdd" :label-col="{ span: 5 }">
+    <a-form ref="addFormRef" :model="addFormState" @finish="submitAdd" :label-col="{ span: 5 }">
+      <a-spin :spinning="loading">
         <a-form-item
           label="用户名"
           name="username"
@@ -382,7 +377,7 @@ const submitAdd = () => {
           <a-button type="primary" html-type="submit">确定</a-button>
           <a-button @click="closeAdd">取消</a-button>
         </a-form-item>
-      </a-form>
-    </a-spin>
+      </a-spin>
+    </a-form>
   </a-drawer>
 </template>

@@ -104,9 +104,9 @@ const submitForm = () => {
             :sorter="(a: SystemAction, b: SystemAction) => a.sort - b.sort"
             :width="80"
           />
-          <a-table-column key="action" title="操作">
+          <a-table-column key="action" title="操作" :width="60">
             <template #default="{ record }">
-              <a-button type="dashed" size="small" shape="circle" @click="edit(record)">
+              <a-button size="small" shape="circle" @click="edit(record)">
                 <template #icon><EditOutlined /></template>
               </a-button>
             </template>
@@ -117,8 +117,8 @@ const submitForm = () => {
   </a-spin>
 
   <a-drawer v-model:open="visible">
-    <a-spin :spinning="loading">
-      <a-form :model="formState" @finish="submitForm" :label-col="{ span: 5 }">
+    <a-form :model="formState" @finish="submitForm" :label-col="{ span: 5 }">
+      <a-spin :spinning="loading">
         <a-form-item label="接口路径">
           <span>{{ row.key_name }}</span>
         </a-form-item>
@@ -132,7 +132,7 @@ const submitForm = () => {
           <a-button type="primary" html-type="submit">确定</a-button>
           <a-button @click="visible = false">取消</a-button>
         </a-form-item>
-      </a-form>
-    </a-spin>
+      </a-spin>
+    </a-form>
   </a-drawer>
 </template>

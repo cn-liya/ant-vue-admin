@@ -20,7 +20,7 @@ const encrypt = () => {
 }
 const decrypt = () => {
   let text = cipherText.value.trim()
-  if ((text.length & 3) != 0 || !cipherPattern.test(text)) {
+  if ((text.length & 3) !== 0 || !cipherPattern.test(text)) {
     message.warning('密文格式错误')
     return
   }
@@ -35,36 +35,34 @@ const decrypt = () => {
 </script>
 
 <template>
-  <div style="width: 500px">
+  <a-form :label-col="{ span: 4 }" style="width: 500px">
     <a-spin :spinning="loading">
-      <a-form :label-col="{ span: 4 }">
-        <a-form-item label="明文">
-          <a-textarea v-model:value="plainText" :rows="3" :maxlength="100" />
-        </a-form-item>
-        <a-form-item :wrapper-col="{ offset: 11 }">
-          <a-button
-            type="ghost"
-            shape="round"
-            class="success"
-            @click="encrypt"
-            :disabled="plainText.trim().length < 2 || !api.cryptoEecrypt.permit()"
-          >
-            <template #icon><DownOutlined /></template>
-          </a-button>
-          <a-button
-            type="ghost"
-            shape="round"
-            class="error"
-            @click="decrypt"
-            :disabled="cipherText.trim().length < 4 || !api.cryptoDecrypt.permit()"
-          >
-            <template #icon><UpOutlined /></template>
-          </a-button>
-        </a-form-item>
-        <a-form-item label="密文">
-          <a-textarea v-model:value="cipherText" :rows="4" :maxlength="400" />
-        </a-form-item>
-      </a-form>
+      <a-form-item label="明文">
+        <a-textarea v-model:value="plainText" :rows="3" :maxlength="100" />
+      </a-form-item>
+      <a-form-item :wrapper-col="{ offset: 11 }">
+        <a-button
+          type="ghost"
+          shape="round"
+          class="success"
+          @click="encrypt"
+          :disabled="plainText.trim().length < 2 || !api.cryptoEecrypt.permit()"
+        >
+          <template #icon><DownOutlined /></template>
+        </a-button>
+        <a-button
+          type="ghost"
+          shape="round"
+          class="error"
+          @click="decrypt"
+          :disabled="cipherText.trim().length < 4 || !api.cryptoDecrypt.permit()"
+        >
+          <template #icon><UpOutlined /></template>
+        </a-button>
+      </a-form-item>
+      <a-form-item label="密文">
+        <a-textarea v-model:value="cipherText" :rows="4" :maxlength="400" />
+      </a-form-item>
     </a-spin>
-  </div>
+  </a-form>
 </template>

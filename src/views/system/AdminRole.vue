@@ -156,8 +156,8 @@ const actions = ref<SystemAction[]>([])
     :title="(formState.id ? '编辑' : '新增') + `角色`"
     :width="800"
   >
-    <a-spin :spinning="loading">
-      <a-form ref="formRef" :model="formState" @finish="submitForm" :label-col="{ span: 6 }">
+    <a-form ref="formRef" :model="formState" @finish="submitForm" :label-col="{ span: 6 }">
+      <a-spin :spinning="loading">
         <a-row>
           <a-col :span="10">
             <a-form-item
@@ -208,8 +208,8 @@ const actions = ref<SystemAction[]>([])
           <a-button type="primary" html-type="submit">确定</a-button>
           <a-button @click="closeForm">取消</a-button>
         </div>
-      </a-form>
-    </a-spin>
+      </a-spin>
+    </a-form>
   </a-drawer>
 </template>
 <style scoped>

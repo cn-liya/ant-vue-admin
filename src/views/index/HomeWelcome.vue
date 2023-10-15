@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h2>Welcome</h2>
+  <a-result status="success" title="Welcome" />
 </template>

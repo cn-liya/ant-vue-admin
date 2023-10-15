@@ -52,36 +52,35 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div style="width: 500px">
+  <a-form
+    ref="formRef"
+    :model="formState"
+    :rules="rules"
+    @finish="submitForm"
+    :label-col="{ span: 6 }"
+    style="width: 500px"
+  >
     <a-spin :spinning="loading">
-      <a-form
-        ref="formRef"
-        :model="formState"
-        :rules="rules"
-        @finish="submitForm"
-        :label-col="{ span: 6 }"
-      >
-        <a-form-item label="新密码" name="password" has-feedback>
-          <a-input
-            v-model:value="formState.password"
-            type="password"
-            :maxlength="32"
-            autocomplete="new-password"
-          />
-        </a-form-item>
-        <a-form-item label="确认密码" name="checkPwd" has-feedback>
-          <a-input
-            v-model:value="formState.checkPwd"
-            type="password"
-            :maxlength="32"
-            autocomplete="off"
-          />
-        </a-form-item>
-        <a-form-item :wrapper-col="{ offset: 6 }">
-          <a-button type="primary" html-type="submit">确定</a-button>
-          <a-button @click="resetForm">取消</a-button>
-        </a-form-item>
-      </a-form>
+      <a-form-item label="新密码" name="password" has-feedback>
+        <a-input
+          v-model:value="formState.password"
+          type="password"
+          :maxlength="32"
+          autocomplete="new-password"
+        />
+      </a-form-item>
+      <a-form-item label="确认密码" name="checkPwd" has-feedback>
+        <a-input
+          v-model:value="formState.checkPwd"
+          type="password"
+          :maxlength="32"
+          autocomplete="off"
+        />
+      </a-form-item>
+      <a-form-item :wrapper-col="{ offset: 6 }">
+        <a-button type="primary" html-type="submit">确定</a-button>
+        <a-button @click="resetForm">取消</a-button>
+      </a-form-item>
     </a-spin>
-  </div>
+  </a-form>
 </template>

@@ -44,7 +44,7 @@ function setBase64(uid: string) {
 }
 const onChange: UploadProps['onChange'] = (info) => {
   if (!info.file.status || info.file.status === 'error') {
-    fileList.value = fileList.value.filter((e) => e.status && e.status != 'error')
+    fileList.value = fileList.value.filter((e) => e.status && e.status !== 'error')
   } else if (info.file.status === 'done') {
     setBase64(info.file.uid)
     changeFile()

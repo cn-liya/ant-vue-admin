@@ -112,9 +112,11 @@ const setSelectMenu = (to: RouteLocationNormalizedLoaded) => {
           <template #overlay>
             <a-menu>
               <a-menu-item @click="$router.push({ name: 'password' })">
-                <LockOutlined /> 修改密码
+                <template #icon><LockOutlined /></template>修改密码
               </a-menu-item>
-              <a-menu-item @click="logout"><LogoutOutlined /> 退出登录</a-menu-item>
+              <a-menu-item @click="logout">
+                <template #icon><LogoutOutlined /></template>退出登录
+              </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>

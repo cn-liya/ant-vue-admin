@@ -63,7 +63,7 @@ const getCaptcha = () => {
         name="username"
         :rules="[{ required: true, message: 'Please input your username!' }]"
       >
-        <a-input v-model:value="formState.username" placeholder=" 用 户 名">
+        <a-input v-model:value="formState.username" placeholder=" 用 户 名" :maxlength="32">
           <template #prefix><UserOutlined /></template>
         </a-input>
       </a-form-item>
@@ -76,6 +76,7 @@ const getCaptcha = () => {
           v-model:value="formState.password"
           autocomplete="new-password"
           placeholder=" 密 码"
+          :maxlength="32"
         >
           <template #prefix><LockOutlined /></template>
         </a-input-password>
@@ -86,13 +87,25 @@ const getCaptcha = () => {
         :rules="[{ required: true, message: 'Please input the captcha!' }]"
       >
         <a-input-group compact>
-          <a-input v-model:value="formState.captcha" placeholder=" 验 证 码" style="width: 70%">
+          <a-input
+            v-model:value="formState.captcha"
+            :disabled="!formState.session_key"
+            placeholder=" 验 证 码"
+            :maxlength="6"
+            style="width: 70%"
+          >
             <template #prefix><SafetyOutlined /></template>
           </a-input>
-          <a-button type="link" :disabled="disabled" style="margin: 0; padding: 0; width: 30%">
+          <a-button
+            type="link"
+            :disabled="disabled"
+            @click="getCaptcha"
+            style="margin: 0; padding: 0; width: 30%"
+          >
             <img
               :src="'data:image/jpg;base64,' + base64_image"
-              @click="getCaptcha"
+              title="点 击 获 取"
+              alt="点 击 获 取"
               style="width: 100%; height: 38px"
             />
           </a-button>

@@ -1,3 +1,4 @@
+import { table } from './types/table'
 import 'vue-router'
 
 declare module 'vue-router' {
