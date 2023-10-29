@@ -48,8 +48,6 @@ const onChange: UploadProps['onChange'] = (info) => {
   } else if (info.file.status === 'done') {
     setBase64(info.file.uid)
     changeFile()
-  } else if (info.file.status === 'removed') {
-    changeFile()
   }
 }
 
@@ -138,7 +136,7 @@ const customRequest: UploadProps['customRequest'] = (option) => {
         class="upload-wrapper"
         v-show="api.uplaodImage.permit() && (!limit || fileList.length < limit)"
         multiple
-        accept="image/jpeg,image/gif,image/png"
+        accept="image/jpeg,image/png,image/gif"
         @change="onChange"
         :before-upload="beforeUpload"
         v-model:file-list="fileList"

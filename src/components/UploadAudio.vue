@@ -23,8 +23,8 @@ const upload = (e: any) => {
     return
   }
   let file: File = e.target.files[0]
-  if (!['audio/mp3', 'audio/mpeg', 'audio/wav', 'audio/ogg'].includes(file.type)) {
-    message.warning('音频类型仅支持mp3/wav/ogg')
+  if (!['audio/mpeg', 'audio/wav', 'audio/ogg'].includes(file.type)) {
+    message.warning('音频类型仅支持mp3/wav/oga')
     return
   }
   if (file.size > 2 << 20) {

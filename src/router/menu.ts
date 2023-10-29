@@ -3,7 +3,6 @@ import { MenuTree, dfsTree } from '@/types/route'
 import {
   DragOutlined,
   FormOutlined,
-  LockOutlined,
   SettingOutlined,
   StarOutlined,
   ToolOutlined,
@@ -83,9 +82,9 @@ const menuTree: MenuTree = {
   },
   password: {
     title: '修改密码',
-    icon: LockOutlined,
     conponent: () => import('@/views/user/ChangePwd.vue'),
-    isPub: true
+    isPub: true,
+    hide: true
   }
 }
 

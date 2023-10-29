@@ -8,6 +8,7 @@ export type MenuTreeNode = {
   sub?: MenuTree // 有sub则忽略以下
   conponent?: RouteComponent
   isPub?: boolean
+  hide?: boolean
   props?: object
 }
 
@@ -68,7 +69,9 @@ export const dfsTree = (tree: MenuTree, pnames: string[] = [], ptitles: string[]
         }
       })
     }
-    menus.push(branch)
+    if (!tree[k].hide) {
+      menus.push(branch)
+    }
   }
   return { menus, sys, routes }
 }

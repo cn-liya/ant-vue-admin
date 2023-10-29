@@ -24,7 +24,7 @@ const upload = (e: any) => {
   }
   let file: File = e.target.files[0]
   if (!['video/mp4', 'video/webm', 'video/ogg'].includes(file.type)) {
-    message.warning('视频类型仅支持mp4/webm/ogg')
+    message.warning('视频类型仅支持mp4/webm/ogv')
     return
   }
   if (file.size > 5 << 20) {

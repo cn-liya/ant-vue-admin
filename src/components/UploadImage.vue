@@ -74,7 +74,7 @@ const sourceLoad = () => {
         type="file"
         ref="fileRef"
         v-show="false"
-        accept="image/jpeg,image/gif,image/png"
+        accept="image/jpeg,image/png,image/gif"
         :disabled="!permit"
         @change="upload"
       />
