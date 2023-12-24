@@ -41,17 +41,17 @@ instance.interceptors.response.use(
 
 // 每个接口包装成一个实例，可以前置判断权限，发起请求可以传入Ref<boolean>对象。
 class API<D, T> {
-  protected _path: string
-  protected _pub?: boolean
+  #path: string
+  #pub?: boolean
   constructor(path: string, pub?: boolean) {
-    this._path = path
-    this._pub = pub
+    this.#path = path
+    this.#pub = pub
   }
-  protected __post(data: D): Promise<T> {
-    return instance.post(this._path, data)
+  #post(data: D): Promise<T> {
+    return instance.post(this.#path, data)
   }
   permit(): boolean {
-    return this._pub || store.permit(this._path)
+    return this.#pub || store.permit(this.#path)
   }
   do(data: D, lock?: Ref<boolean>): Promise<T> {
     return new Promise((resolve, reject) => {
@@ -60,7 +60,7 @@ class API<D, T> {
         return
       }
       lock && (lock.value = true)
-      this.__post(data)
+      this.#post(data)
         .then(resolve)
         .catch(reject)
         .finally(() => {
@@ -71,14 +71,14 @@ class API<D, T> {
 }
 
 class Upload<T> extends API<any, T> {
-  protected _field: string
+  #field: string
   constructor(path: string, field = 'file', pub?: boolean) {
     super(path, pub)
-    this._field = field
+    this.#field = field
   }
   do(file: File, lock?: Ref<boolean>): Promise<T> {
     const data = new FormData()
-    data.append(this._field, file)
+    data.append(this.#field, file)
     return super.do(data, lock)
   }
 }

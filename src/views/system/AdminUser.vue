@@ -202,7 +202,7 @@ const submitAdd = () => {
       <a-table-column key="username" title="用户名" data-index="username" />
       <a-table-column key="role_id" title="角色">
         <template #default="{ record }">
-          {{ record.role_id ? roleOpt?.render(record.role_id) : '超级管理员' }}
+          {{ record.is_super ? '超级管理员' : roleOpt?.render(record.role_id) }}
         </template>
       </a-table-column>
       <a-table-column key="status" title="状态" :width="80">
@@ -227,7 +227,7 @@ const submitAdd = () => {
           </a-space>
         </template>
         <template #default="{ record, index }">
-          <span v-if="record.role_id">
+          <span v-if="!record.is_super">
             <template v-for="item in $table.instance.status.options()" :key="item.value">
               <a-popconfirm
                 v-if="record.status !== item.value && api.adminSetStatus.permit()"

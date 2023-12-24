@@ -24,7 +24,7 @@ const errorMsg = (err: AxiosError) => {
   const {
     status,
     statusText,
-    data: { msg }
+    data: { code, msg }
   } = <AxiosResponse>err.response
   if (status === 401) {
     if (showLogin()) {
@@ -32,9 +32,9 @@ const errorMsg = (err: AxiosError) => {
     }
   }
   if (status < 500) {
-    message.warning(`(${status}) ${msg || statusText}`)
+    message.warning(`(${code || status}) ${msg || statusText}`)
   } else {
-    message.error(`(${status}) ${msg || '服务器开小差啦'}`)
+    message.error(`(${code || status}) ${msg || '服务器开小差啦'}`)
   }
 }
 
@@ -47,7 +47,7 @@ const errorPage = (err: AxiosError) => {
   const {
     status,
     statusText,
-    data: { msg }
+    data: { code, msg }
   } = <AxiosResponse>err.response
   switch (status) {
     case 401:
@@ -65,7 +65,7 @@ const errorPage = (err: AxiosError) => {
           code: 'error',
           status: 'warning',
           title: 'Request Failed',
-          subTitle: `(${status}) ${msg || statusText}`
+          subTitle: `(${code || status}) ${msg || statusText}`
         })
       } else {
         store.setError('500')
@@ -81,12 +81,12 @@ const errorText = (err: AxiosError): string => {
   const {
     status,
     statusText,
-    data: { msg }
+    data: { code, msg }
   } = <AxiosResponse>err.response
   if (status === 401) {
     showLogin()
   }
-  return `(${status}) ${msg || statusText}`
+  return `(${code || status}) ${msg || statusText}`
 }
 
 const void0 = () => {

@@ -1,7 +1,7 @@
 # ant-vue-admin
 
 基于
-vue3.x + vue-router4.x + pinia2.x + antdv4.x + vite4.x + typescript5.x + eslint
+vue3.x + vue-router4.x + pinia2.x + antdv4.x + vite5.x + typescript5.x + eslint
 搭建的内容管理后台前端项目
 
 ### 项目目录

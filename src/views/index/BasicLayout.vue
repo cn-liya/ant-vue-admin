@@ -49,9 +49,13 @@ function dfs(mb: MenuBranch[]): MenuItem[] {
 const menuItems = dfs(menus)
 
 const logout = () => {
-  api.logout.do({}).catch(api.void0)
-  store.removeAuth()
-  router.push('/login')
+  api.logout
+    .do({})
+    .then(() => {
+      store.removeAuth()
+      router.push('/login')
+    })
+    .catch(api.void0)
 }
 
 const setSelectMenu = (to: RouteLocationNormalizedLoaded) => {
@@ -111,7 +115,7 @@ const setSelectMenu = (to: RouteLocationNormalizedLoaded) => {
           <span><UserSwitchOutlined /> {{ store.auth.user }}</span>
           <template #overlay>
             <a-menu>
-              <a-menu-item @click="$router.push({ name: 'password' })">
+              <a-menu-item @click="$router.push('/password')">
                 <template #icon><LockOutlined /></template>修改密码
               </a-menu-item>
               <a-menu-item @click="logout">

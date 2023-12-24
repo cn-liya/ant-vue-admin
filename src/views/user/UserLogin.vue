@@ -2,6 +2,7 @@
 import api from '@/api'
 import { useCoreStore } from '@/stores/core'
 import { LockOutlined, SafetyOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { Modal } from 'ant-design-vue'
 import { LoginArgs } from 'models'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -31,7 +32,20 @@ const submitForm = () => {
         actions: res.actions,
         menus: res.menus
       })
-      router.push('/')
+      if (res.pwd_tip) {
+        Modal.confirm({
+          type: 'warning',
+          content: res.pwd_tip,
+          onOk() {
+            router.push('/password')
+          },
+          onCancel() {
+            router.push('/')
+          }
+        })
+      } else {
+        router.push('/')
+      }
     })
     .catch(api.errorMsg)
 }

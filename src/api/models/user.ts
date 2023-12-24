@@ -12,6 +12,7 @@ declare module 'models' {
   type LoginResp = {
     token: string
     username: string
+    pwd_tip?: string
     is_super?: boolean
     actions?: string[]
     menus?: string[]
@@ -44,6 +45,7 @@ declare module 'models' {
     id: number
     username: string
     role_id: number
+    is_super?: boolean
     status: number
   }
   type AdminListResp = {
